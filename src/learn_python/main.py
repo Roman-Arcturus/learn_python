@@ -1,4 +1,4 @@
-from learn_python.phase1_loops import countdown
+from learn_python.p1_loops import countdown
 
 # from learn_python.functions import add_numbers
 

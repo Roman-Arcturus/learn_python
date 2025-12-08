@@ -1,8 +1,8 @@
-from learn_python.phase1_loops import countdown
-from learn_python.phase1_loops import sum_list_for
-from learn_python.phase1_loops import index_values
-from learn_python.phase1_loops import min_and_max
-from learn_python.phase1_loops import count_evens, count_evens_sum
+from learn_python.p1_loops import countdown
+from learn_python.p1_loops import sum_list_for
+from learn_python.p1_loops import index_values
+from learn_python.p1_loops import min_and_max
+from learn_python.p1_loops import count_evens, count_evens_sum
 
 
 def test_countdown_positive():

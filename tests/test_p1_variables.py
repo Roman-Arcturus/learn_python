@@ -1,4 +1,4 @@
-from learn_python.phase1_variables import compute_basic_values
+from learn_python.p1_variables import compute_basic_values
 
 
 def test_compute_basic_values():
