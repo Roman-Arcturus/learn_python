@@ -1,0 +1,17 @@
+# Environment
+.venv/
+
+# Python compiled
+__pycache__/
+*.pyc
+.env
+
+# Packaging
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+
+.ruff_cache/
