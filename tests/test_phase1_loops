@@ -1,0 +1,8 @@
+from learn_python.phase1_loops import countdown
+
+def test_countdown_positive():
+    assert countdown(5) == [5, 4, 3, 2, 1]
+
+def test_countdown_zero_and_negative():
+    assert countdown(0) == []
+    assert countdown(-3) == []
