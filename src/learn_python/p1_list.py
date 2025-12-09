@@ -1,9 +1,10 @@
+new_list: list[int] = []
+print(new_list, ":", type(new_list))
+
+
 values = [1, 2, 3]
-
-empty: list[int] = []
-
 print(values)
-print(empty)
+
 
 values = list(range(5))
 

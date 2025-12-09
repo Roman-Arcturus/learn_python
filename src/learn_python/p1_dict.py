@@ -1,3 +1,6 @@
+new_dict = {}
+print(new_dict, ":", type(new_dict))
+
 user = {
     "name": "Roman",
     "age": 40,
