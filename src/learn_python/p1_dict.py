@@ -1,6 +1,9 @@
 new_dict = {}
 print(new_dict, ":", type(new_dict))
 
+full_dict : dict = {}
+
+
 user = {
     "name": "Roman",
     "age": 40,

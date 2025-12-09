@@ -9,6 +9,23 @@ count: int = 10
 message: str = "hello"
 temperature: float = 21.5
 
+full_dict: dict = {}
+user: dict = {
+    "name": "Roman",
+    "age": 40,
+    "is_active": True,
+    "waza": "yo"
+}
+
+new_list: list[int] = []
+values = [1, 2, 3]
+
+new_set: set[int] = set()
+fruits = {"apple", "banana", "orange", "square"}
+
+
+
+
 # 2. Primitive Types (Most Important)
 
 """
@@ -53,5 +70,3 @@ True or False
 not True
 """
 
-
-# tuple
