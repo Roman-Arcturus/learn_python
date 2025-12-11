@@ -10,23 +10,43 @@ users = [
         "name": "Bob",
         # no meta
     },
+    {
+        "name": "Martha",
+        "meta": {}
+    },
+    {
+        "name": "Kevin",
+        "meta": {
+            "level": 3
+        }
+    },
+    {
+        "name": "Roman",
+        "meta": {
+            "score": 9
+        }
+    },
 ]
 
 
 def normalize_meta(users: list) -> list:
     result:list[dict] = []
-    
+
     for u in users:
         name: str = u["name"]
+
         if "meta" in u:
-            meta = u["meta"].copy()
+            meta: dict = u["meta"].copy()
+            if "score" not in meta:
+                meta["score"] = 0
+            if "level" not in meta:
+                meta["level"] = 1
         else:
-            meta: dict = {}
-            
-        # Normalize fields
-        score = meta["score"] if "score" in meta else 0
-        level = meta["level"] if "level" in meta else 1            
-        
+            meta: dict = {
+                "score" : 0,
+                "level" : 1
+            }
+
         n_user: dict = {
             "name" : name,
             "meta" : meta
@@ -35,29 +55,14 @@ def normalize_meta(users: list) -> list:
 
     return result
 
-def broken(users: list) -> list:
-    result = []
-    for u in users:
-        meta = u.get("meta", {})
-        meta["score"] = meta.get("score", 0)
-        meta["level"] = meta.get("level", 1)
-
-        new_u = {
-            "name": u["name"],
-            "meta": meta
-        }
-        result.append(new_u)
-
-    return result
-
-#print(users)
-#print( normalize_meta(users))
 print(users)
-print( broken(users))
-print(users)
+processed: list = normalize_meta(users)
 
+for value in processed:
+    print(value)
 
-#score = u["score"] if "score" in u else 0
+#print(users[2])
+
 
 print("------------ exit --------------")
 exit()

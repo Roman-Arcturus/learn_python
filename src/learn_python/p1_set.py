@@ -12,7 +12,7 @@ print(fruits)
 fruits.remove("apple")
 print(fruits)
 
-fruits.discard("pear") # safe remove 
+fruits.discard("pear") # safe remove
 print(fruits)
 
 if "banana" in fruits:
