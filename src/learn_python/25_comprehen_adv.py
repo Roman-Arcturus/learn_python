@@ -99,14 +99,6 @@ exercise = [
     for u in users
 ]
 
-exercise = [
-    f"{u['name']}: {len(u.get('meta', {}).get('tags', []))} tags"
-        if
-            "meta" in u and "tags" in u["meta"] and type(u["meta"]["tags"]) is list
-        else
-            f"{u['name']}: 0 tags"
-        for u in users
-]
 
 exercise = [
     (
@@ -116,10 +108,6 @@ exercise = [
     )
     for u in users
 ]
-
-
-#"meta" in u and "tags" in u["meta"]
-
 
 
 

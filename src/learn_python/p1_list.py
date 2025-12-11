@@ -35,7 +35,7 @@ print(values)
 
 for value in values:
     print(value)
-    
+
 copy1 = values.copy()
 copy2 = list(values)
 
