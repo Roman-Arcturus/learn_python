@@ -2,6 +2,7 @@ new_list: list[int] = []
 print(new_list, ":", type(new_list))
 
 
+
 values = [1, 2, 3]
 print(values)
 

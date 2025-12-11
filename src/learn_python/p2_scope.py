@@ -59,3 +59,45 @@ def outer():
     print(msg[0])
 
 outer()
+
+
+x = 10  # Global
+
+def outer():
+    x = 20  # Enclosing
+    def inner():
+        x = 30  # Local
+        print(x)
+    inner()
+
+outer()
+
+x: int = 10
+def outer():
+    x = 20
+    def inner():
+        print(x)
+    inner()
+
+outer()
+
+
+y = 50
+
+def a():
+    def b():
+        print(y)
+    b()
+
+a()
+
+
+def add_item(lst, item):
+    lst.append(item)
+    return lst
+
+data = []
+result = add_item(data, "x")
+
+print(data)
+print(result)
