@@ -103,12 +103,28 @@ result = list(
 )
 #(lambda x: x["meta"]["score"])(u) -> create Lambda and Executes it
 
+"""
+Quick refresher: all() and any()
 
+all(iterable) → bool
+Returns True iff every element of iterable is truthy.
+Short-circuits on the first falsy element.
 
+any(iterable) → bool
+Returns True iff at least one element of iterable is truthy.
+Short-circuits on the first truthy element.
 
+Important: both accept any iterable (generator, map, filter);
+you do not need to wrap with list().
+"""
+all(x > 0 for x in [1,2,3])   # True
+any(x > 2 for x in [1,2,3])   # True
+all([])                       # True (vacuously true)
+any([])                       # False
 
 
 #print(result)
 
-for each in result:
-    print(each)
+#for each in result:
+#    print(each)
+

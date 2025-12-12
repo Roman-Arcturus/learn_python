@@ -24,7 +24,7 @@ OUTPUT_EXPRESSION
         ← optional FILTER
 """
 
-# --- --- --- --- --- --- Examples --- --- --- --- --- ---
+# ——— ——— ——— ——— ——— ——— Examples ——— ——— ——— ——— ——— ———
 
 nums: list = [1, 2, 3, 6]
 users = [ { "name": "Alice", "active": True,
@@ -38,7 +38,7 @@ users = [ { "name": "Alice", "active": True,
 squared = [ n * 2 for n in nums ]
 # →  [2, 4, 6, 12]
 
-# Filtering
+# Basic filtering
 evens = [ n for n in nums if n % 2 == 0 ]
 # →  [2, 6]
 
@@ -55,22 +55,22 @@ unique_tags = { tag for u in users for tag in u["meta"]["tags"] }
 # →  {'premium', 'admin', 'level', 'something'}
 
 
-# --- --- --- --- --- --- Exercises --- --- --- --- --- ---
+# ——— ——— ——— ——— ——— ——— Exercises ——— ——— ——— ——— ——— ———
 
 
-# --- Exercise 1 — Basic List Comprehension ---
+# ——— Exercise 1 — Basic List Comprehension ———
 nums = [1, 2, 3, 4, 5]
 
 #Produce a new list containing each number multiplied by 3.
 multy_3 = [ n * 3 for n in nums ]
 
-# --- Exercise 2 — Filtering ---
+# ——— Exercise 2 — Filtering ———
 nums = [10, -1, 5, 0, -7, 2]
 
 #Produce a list of only the positive numbers (greater than zero).
 positive = [ n for n in nums if n > 0 ]
 
-# --- Exercise 3 — Transform + Filter ---
+# ——— Exercise 3 — Transform + Filter ———
 users = [
     {"name": "Alice",   "active": True},
     {"name": "Bob",     "active": False},
@@ -87,11 +87,11 @@ users = [
     {"name": "Kevin",   "meta": {"score": 5}},
 ]
 
-# --- Exercise 4 — Dict Comprehension ---
+# ——— Exercise 4 — Dict Comprehension ———
 #produce a dict {"Alice": 10, "Bob": 1, "Kevin": 5}
 user_scores = { u["name"] : u["meta"]["score"] for u in users }
 
-# --- Exercise 5 — Nested Comprehension (Moderate) ---
+# ——— Exercise 5 — Nested Comprehension (Moderate) ———
 users = [
     {"name": "Alice", "meta": {"tags": ["a", "b"]}},
     {"name": "Bob",   "meta": {"tags": ["b", "c"]}},
