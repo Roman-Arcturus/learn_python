@@ -101,7 +101,7 @@ result = list(
     for u in users
     if ( lambda x: x["meta"]["score"] )(u) > 6
 )
-#(lambda x: x["meta"]["score"])(u) -> create Lambda and Executes it
+#(lambda x: x["meta"]["score"])(u) -> create Lambda and Calls / Executes it
 
 """
 Quick refresher: all() and any()

@@ -211,6 +211,41 @@ users = [
     {"name": "Mara",  "score": 5},
 ]
 
+#Produce a list of strings in the following format:
+#"<name>: PASS"   if score ≥ 5
+#"<name>: FAIL"   otherwise
+#["Alice: PASS", "Bob: FAIL", "Kevin: PASS", "Mara: PASS"]
+
+#Use map() only (no filter, no sorted).
+#The lambda must contain an inline conditional expression.
+
+result = list(
+    map(
+        lambda u: f'{u["name"]} : PASS'
+        if u["score"] >=5 else f'{u["name"]} : FAIL',
+        users
+    )
+)
+
+# ——— ——— ——— Exercise (11) — Lambda + Nested Data Extraction ——— ——— ———
+
+products = [
+    {"id": 1, "meta": {"price": 10, "tags": ["a", "b"]}},
+    {"id": 2, "meta": {"price": 3,  "tags": []}},
+    {"id": 3, "meta": {"price": 20, "tags": ["b", "c", "d"]}},
+]
+
+#Produce a list of strings of the form:
+#"ID <id> / <num_tags> tags"
+#["ID 1 / 2 tags", "ID 2 / 0 tags", "ID 3 / 3 tags"]
+
+result = list(
+    map(
+        lambda p: f'ID {p["id"]} / {len(p["meta"]["tags"])} tags',
+        products
+    )
+)
+
 
 
 
