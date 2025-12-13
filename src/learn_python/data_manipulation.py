@@ -1,10 +1,3 @@
-"""
-I give you a very small, concrete task.
-You attempt a solution using any pattern: comprehension, lambda, filter/map, or plain loop.
-I check correctness, then show two alternative correct variants, so you see the trade-offs.
-We repeat with slightly more complex shapes until choosing the right idiom becomes natural.
-"""
-
 # ——— ——— ——— Example 1 ——— ——— ———
 nums = [3, -1, 4, 0, 7]
 
@@ -36,6 +29,7 @@ result = []
 for x in nums:
     if x > 0:
         result.append(abs(x))
+
 """Plain loops remains essential in production code when:
 you need debugging,
 you need additional side logic,
@@ -247,9 +241,74 @@ result = list(
 )
 
 
+# Continue from data_manipulation.py
+
+# ——— ——— ——— Exercise 12 — Predicate Discipline ——— ——— ———
+
+nums = [2, -3, 0, 5, 8]
+
+"""Produce a list of strings:
+"2 is even"
+"8 is even"
+Use filter() to select only positive even numbers.
+Use map() to format strings.
+"""
+
+result = list(
+    map(
+        lambda z: f'{z} is even',
+        filter(
+            lambda y: y > 0 and y % 2 == 0,
+            nums
+        )
+    )
+)
+
+# ——— ——— ——— Exercise 13 — Reducer Thinking ——— ——— ———
+
+nums = [3, 6, 9, 12]
+
+"""Determine whether all positive numbers are divisible by 3.
+Rules:
+Use filter() to keep only positive numbers.
+Use a generator expression (not map) inside all().
+No list(...) wrapping.
+"""
+
+result: bool = all(
+    z % 3 == 0 for z in filter(
+        lambda y: y > 0,
+        nums
+    )
+)
+
+# ——— ——— ——— Exercise 14 — Choose the Better Tool ——— ——— ———
+"""Produce a list of **squares of positive numbers**.
+
+**Part A**
+Write the solution using **filter + map**.
+
+**Part B**
+Write the solution using a **single list comprehension**."""
+nums = [2, -3, 0, 5, 8]
+
+#Part A
+result = list(
+    map(
+        lambda z: z * z,
+        filter(
+            lambda y: y > 0,
+            nums
+        )
+    )
+)
+
+#Part B
+result = list(
+    n * n
+    for n in nums
+    if n > 0
+)
 
 
 print(result)
-
-#for each in result:
-#    print(each)
