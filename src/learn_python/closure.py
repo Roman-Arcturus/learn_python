@@ -95,9 +95,9 @@ result_1 = multipliers[0]
 result_2 = multipliers[1]
 result_3 = multipliers[2]
 
-print(result_1(2), result_2(2), result_3(2) )
+# print(result_1(2), result_2(2), result_3(2) )
 
-# the fix
+# the fix - late binding
 def make_multipliers(numbers: list[int]) -> list[callable]:
     funcs = []
 
@@ -115,4 +115,43 @@ result_1 = multipliers[0]
 result_2 = multipliers[1]
 result_3 = multipliers[2]
 
-print(result_1(2), result_2(2), result_3(2) )
+# print(result_1(2), result_2(2), result_3(2) )
+
+# ——— ——— ——— Closures as configuration ——— ——— ——— 
+
+def make_threshold_checker(threshold: int) -> callable[[int], bool]:
+    def is_above(value: int) -> bool:
+        return value > threshold
+
+    return is_above
+
+peak_limit = 42
+check_level = make_threshold_checker(peak_limit) 
+# provide limit value once at the execution of the script
+
+# then, during the script run we test some changing value 
+# towards the constant defined once
+#if check_level(current_value):
+#    ...
+
+
+# ——— ——— ——— Closures can accidentally capture **mutable objects**
+
+# provided example:
+def make_allowed_checker(allowed: set[int]):
+    allowed.add(99) 
+    def is_allowed(value: int) -> bool:
+        return value in allowed
+
+    return is_allowed
+
+# usage example:
+allowed_vals = {22, 33, 44} # defining a set in a config file for example
+check_allowance = make_allowed_checker(allowed_vals) # creating a closure
+
+# during the runtime we get unexpected result and obscure behaviour
+print(check_allowance(22)) # True
+print(check_allowance(99)) # should be True but is_allowed mutated global set
+
+# We already had a lesson about mutables when we began learning functions
+
