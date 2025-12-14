@@ -89,8 +89,6 @@ print(result_1(2), result_2(2), result_3(2) )
 print(result_4(2))
 # ->  10
 
-exit()
-
 # ——— ——— ——— Closures as configuration ——— ——— ——— 
 
 def make_threshold_checker(threshold: int) -> callable[[int], bool]:
@@ -113,7 +111,7 @@ check_level = make_threshold_checker(peak_limit)
 
 # provided example:
 def make_allowed_checker(allowed: set[int]):
-    allowed.add(99) 
+    allowed.add(99) # a mutation
     def is_allowed(value: int) -> bool:
         return value in allowed
 

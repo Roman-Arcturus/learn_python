@@ -24,7 +24,7 @@ if check_if_allowed(tested_value):
     # logic
     print("tested ok") # -> tested ok, correct
     
-# for example is some module another coder for some reason wrote
+# for example in some module another coder for some reason wrote
 exact_values_set = exact_values_set.add("bbb")
 
 #and he tries to test some var using our closure
@@ -35,5 +35,4 @@ if check_if_allowed(tested_value):
     print("tested ok") # -> tested ok, correct.
     
 # because mutation of the global exact_values_set won't affect our closure
-
 
