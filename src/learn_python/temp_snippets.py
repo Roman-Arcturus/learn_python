@@ -12,8 +12,8 @@ list_of_func = []
 list_of_func.append(fun_square)
 list_of_func.append(fun_cube)
 
-print( list_of_func )
-#print(type(list_of_func))
+#print( list_of_func )
+#print(type(list_of_func)) # list
 
 #list_of_func[0]     # keeps reference to fun_square()
 #list_of_func[0](2)  # executes fun_square(2)

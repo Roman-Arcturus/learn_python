@@ -34,38 +34,7 @@ add_10 = make_adder(10)
 
 # ——— ——— ——— Closures — What Is Actually Remembered ——— ——— ——— 
 
-# ——— ——— ——— Problematic example ——— ——— ———
-
-funcs = []
-for i in range(3):
-    def f():
-        return i
-    funcs.append(f)
-
-funcs[0]() # 2
-funcs[1]() # 2
-funcs[2]() # 2
-
-
-# ——— ——— ——— Solution: introduce a new binding ——— ——— ———
-
-funcs = []
-
-for i in range(3):
-    def make_f(n):
-        def f():
-            return n
-        return f
-
-    funcs.append(make_f(i))
-    
-funcs[0]()  # 0
-funcs[1]()  # 1
-funcs[2]()  # 2
-
-
 # ——— ——— ——— Lesson 31 ——— ——— ——— 
-numbers = []
 
 def make_multipliers(numbers: list[int]) -> list[callable]:
     funcs = []
@@ -79,26 +48,18 @@ def make_multipliers(numbers: list[int]) -> list[callable]:
     return funcs
 
 multipliers = make_multipliers([2, 3, 4])
-# At this point: numbers == [2, 3, 4]
-# The function body starts executing:
-#   funcs = [], A new, empty list is created what will create functions
-#   in the loop the functions are defined (not executed) and stored in multiply
-#   after the loop finishes: funcs == [multiply, multiply, multiply]
-#   These are three distinct function objects.
-# so at this point the result is:
-# multipliers == [
-#    <function multiply>,
-#    <function multiply>,
-#    <function multiply>, ]
+# late binding to the last value, n is equal 4 for all cases
 
 result_1 = multipliers[0]
 result_2 = multipliers[1]
 result_3 = multipliers[2]
 
-# print(result_1(2), result_2(2), result_3(2) )
+print(result_1(2), result_2(2), result_3(2) )
+# ->  8 8 8
 
-# the fix - late binding
-def make_multipliers(numbers: list[int]) -> list[callable]:
+# # bind the needed value **into the inner function at definition time**
+def make_multipliers(numbers: list[int]) -> list[callable[int], int]:
+    
     funcs = []
 
     for n in numbers:
@@ -115,7 +76,20 @@ result_1 = multipliers[0]
 result_2 = multipliers[1]
 result_3 = multipliers[2]
 
-# print(result_1(2), result_2(2), result_3(2) )
+print(result_1(2), result_2(2), result_3(2) )
+# ->  4 6 8
+
+multipliers = make_multipliers([5])
+
+result_4 = multipliers[0]
+
+print(result_1(2), result_2(2), result_3(2) )
+# ->  4 6 8
+
+print(result_4(2))
+# ->  10
+
+exit()
 
 # ——— ——— ——— Closures as configuration ——— ——— ——— 
 
@@ -151,7 +125,6 @@ check_allowance = make_allowed_checker(allowed_vals) # creating a closure
 
 # during the runtime we get unexpected result and obscure behaviour
 print(check_allowance(22)) # True
-print(check_allowance(99)) # should be True but is_allowed mutated global set
+print(check_allowance(99)) # should be False but is_allowed mutated global set
 
-# We already had a lesson about mutables when we began learning functions
 
