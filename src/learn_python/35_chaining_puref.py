@@ -132,4 +132,109 @@ def user_tags(users: list[dict]) -> list[list[str]]:
         for u in users
     ]    
     
-print(user_tags(user_list))
+# print(user_tags(user_list))
+
+# ——— ——— ——— Sorting as a pure transformation ——— ——— ——— 
+
+users = [
+    {"id": 1, "name": "Charlie"},
+    {"id": 2, "name": "Alice"},
+    {"id": 3, "name": "Bob"},
+]
+
+#Step 1: define the ordering rule (key function)
+def user_name(user: dict) -> str:
+    return user["name"]
+
+#Step 2: apply sorting as a pipeline stage
+def sort_users_by_name(users: list[dict]) -> list[dict]:
+    return sorted(
+        users,
+        key = user_name
+    )
+
+#  ——— ——— ——— Exercise ——— ——— ———
+
+orders:list = [
+    {
+        "id": 1,
+        "name": "apple",
+        "price": 10,
+        "quantity": 4
+    },
+    {
+        "id": 2,
+        "name": "orange",
+        "price": 5,
+        "quantity": 3
+    },
+    {
+        "id": 3,
+        "name": "banana",
+        "price": 1,
+        "quantity": 2
+    },
+]
+
+def order_total(item: dict) -> float:
+    return item["price"] * item["quantity"]
+    
+def sort_orders_by_total(items: list[dict]) -> list[dict]:
+    return sorted(    # sorted() returns a new list; input is not mutated
+        items,
+        key = order_total
+    )
+    
+for each in sort_orders_by_total(orders):
+    print(each)
+    
+for each in orders: # check if input list is mutated
+    print(each)
+    
+
+#when learning about comprehensions with lambda, we used the pattern:
+def transform_data():
+    return list(
+        map(
+            lambda x:x, # -> output data transform rule
+            sorted(
+                filter(
+                    lambda y:y, # -> filter rule
+                    input_list
+                ),
+                key = lambda z:z  # -> the sorting condition is put directly 
+            )
+        )    
+    )
+
+"""
+moving the sorting condition (as well as filtering one) to another functions, 
+which can be changed later- is a logical next step. Now:
+1. our functions are responsible for only one thing
+2. our functions can be piped
+
+As to answer your question:
+>> Does the distinction between _projection_ (`key=`) and _ordering_ feel clear now?
+I think I understand that sorted() only copies the overall structure of the input and
+inserts to output list elements in the required order. It does not reorder input list.
+"""
+
+def is_valid(x):
+    return bool(x)
+
+def identity(x):
+    return x
+
+def transform_data(input_list):
+    return list(
+        map(
+            identity,
+            sorted(
+                filter(
+                    is_valid,
+                    input_list
+                ),
+                key=identity
+            )
+        )
+    )

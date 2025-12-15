@@ -1,3 +1,39 @@
+"""
+orders = list(
+    {
+        "id": 1,
+        "name": "apples",
+        "price": 10, 
+        "quantity": 2
+    }, 
+    {
+        "id": 2,
+        "name": "oranges",
+        "price": 5, 
+        "quantity": 3
+    }
+)
+"""
+
+orders:list = [
+    {
+        "id": 1,
+        "name": "apples",
+        "price": 10,
+        "quantity": 2
+    },
+    {
+        "id": 2,
+        "name": "oranges",
+        "price": 5,
+        "quantity": 3
+    },
+]
+
+
+
+
+
 def fun_square(x):
     return x * x
 def fun_cube(x):
