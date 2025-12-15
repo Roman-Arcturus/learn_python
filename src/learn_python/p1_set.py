@@ -1,3 +1,4 @@
+quick_set = {}
 new_set: set[int] = set()
 print(new_set, ":", type(new_set))
 

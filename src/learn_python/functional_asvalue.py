@@ -10,11 +10,13 @@ f_squared = squared
 def triple(x: int | float) -> int | float:
     return x * 3
 
-def apply(x: int | float, fn):
+def apply(x: int | float, fn:callable) -> int | float:
     return fn(x)
 
 result_1 = apply(5, squared)
 result_2 = apply(5, triple)
+
+print(result_1, ' ', result_2)
 
 # ——— ——— ——— Exercise 17 — Function Dispatch Table ——— ——— ———
 
@@ -37,5 +39,5 @@ def compute(x, mode):
 
 result = compute(7, "asd")
 
-print(result)
+#print(result)
 
