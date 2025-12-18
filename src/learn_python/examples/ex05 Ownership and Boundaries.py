@@ -24,3 +24,7 @@ process_owned(data)
 
 # Borrowed transformation
 result = process_borrowed(data)
+
+print('  data: ', data)
+print(' alias: ', alias)
+print('result: ', result)
