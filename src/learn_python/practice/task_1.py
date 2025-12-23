@@ -18,28 +18,6 @@ def process_numbers(numbers: list[int]) -> list[int]:
     positive, even integers scaled by 10. Validation is all-or-nothing. 
     For any kind of input mistype, returns an empty list []
     """
-
-    #early return to minimize ifs depth
-    if not isinstance(numbers, list):
-        return []
-
-    #need to refactor -> `for n in numbers` is done twise
-    if all(isinstance(n, int) for n in numbers):
-        return [
-            scale_by_10(n)
-            for n in numbers
-            if is_positive(n) and is_even(n)
-        ]
-
-    #fallback to empty list return
-    return []
-
-def process_numbers_v2(numbers: list[int]) -> list[int]:
-    """
-    Receives a list of integers and returns a newly created list of 
-    positive, even integers scaled by 10. Validation is all-or-nothing. 
-    For any kind of input mistype, returns an empty list []
-    """
     
     #if input is not list early return
     if not isinstance(numbers, list):
@@ -51,8 +29,7 @@ def process_numbers_v2(numbers: list[int]) -> list[int]:
     validated = []
     for n in numbers:
         if type(n) is not int:
-            return [] # is it possible to return from function directly from inside a loop?
-            break
+            return [] # return from function directly
         validated.append(n)
     """
     validated = [
@@ -75,7 +52,8 @@ def process_numbers_v2(numbers: list[int]) -> list[int]:
     ]
     
 
-def process_numbers_v3(numbers: list[int]) -> list[int]:
+# faster version without separation of Interface/Logic
+def process_numbers_v2(numbers: list[int]) -> list[int]:
     try:
         return [
             scale_by_10(n)
@@ -86,5 +64,5 @@ def process_numbers_v3(numbers: list[int]) -> list[int]:
         return []
 
 print("original, global list:                ", original)
-print("return of process_numbers(original):  ", process_numbers_v2(original) )
+print("return of process_numbers(original):  ", process_numbers(original) )
 print("original list after func is executed: ", original)
