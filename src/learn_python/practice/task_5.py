@@ -1,53 +1,42 @@
-"""Problem Statement (Same as Before)
+# Task 5 (Semantic Tightening)
 
-Receives a list of dicts.
-Each dict may or may not contain a key "value".
-If present, "value" must be an integer.
-Return a new list of integers that are positive, even, and scaled by 10.
-Invalid records are ignored.
-Invalid input returns an empty list."""
+"""New focus
 
-"""Constraints (Still Apply)
-You must:
-Keep strict boundary validation:
-items must be a list
-every element must be a dict
-Allow partial success for records
-Avoid mutation
-Avoid exceptions
-Always return a list
-Use your existing pure helpers"""
+Distinguish clearly between:
+Structural validity (can this record be processed?)
+Semantic eligibility (should this record be included?)
 
-"""The Exercise (Precise)
+New requirement
+Add one additional rule:
 
-Rewrite the function so that:
-There is no intermediate validated list
-Boundary validation still happens before the comprehension
-Record validation + filtering + transformation happen in one list comprehension
-The result is no harder to read than your previous version
+A record with "value": 0 is considered structurally valid
+but semantically ineligible and must be excluded from the result.
 
-You are allowed:
-One if block for boundary checks
-One list comprehension for everything else
+This rule must be:
 
-You are not allowed:
-Nested comprehensions
-Lambdas
-Helper functions
-Inline comments inside expressions"""
+Expressed in code (not comments)
+Placed in the correct logical layer
+Not break any existing behavior"""
 
-"""Python Syntax Hint (Only One)
+"""Goal
 
-A list comprehension may contain multiple if clauses, evaluated left to right.
+Refactor the list comprehension only so that:
+Structural checks are grouped and visually obvious
+Semantic checks are grouped and visually obvious
+Behavior is unchanged
+"""
 
-Mental Check (Before You Code)
-Ask yourself:
+"""Constraints
 
-“Can a reader tell, at a glance,
-what is boundary validation
-and what is record-level filtering?”
+Do not add new helper functions
+Do not change the boundary checks
+Do not add intermediate variables
+Do not add comments explaining what the rule is — the code should make it obvious"""
 
-If yes — you’re done."""
+"""Your task
+
+Modify only the list comprehension accordingly."""
+
 
 # helper predicate : return True if input int is even
 def is_even(x: int) -> bool:
@@ -104,13 +93,15 @@ def process_values(items:list[dict]) -> list[int]:
     return [
         scale_by_10(item["value"])
         for item in items
-            # boundary validation
-            if ("value" in item) and type(item["value"]) is int 
-            
-            # record-level filtering
-            if is_positive(item["value"]) and is_even(item["value"])
+        if (
+            ("value" in item)
+            and type(item["value"]) is int
+        ) 
+        and (
+            is_positive(item["value"])
+            and is_even(item["value"])
+        )
     ]
-
 result = process_values(inventory)
 print(result)
 

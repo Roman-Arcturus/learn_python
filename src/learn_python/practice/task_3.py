@@ -31,7 +31,6 @@ Boundary validation is still strict; record-level validation is now permissive.
 Do not mix these two.
 """
 
-
 # helper predicate : return True if input int is even
 def is_even(x: int) -> bool:
     return x % 2 == 0
